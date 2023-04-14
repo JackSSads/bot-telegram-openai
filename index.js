@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Definindo a ação a ser executada quando o usuário enviar a mensagem "/start"
-bot.hears('/start', (ctx) => ctx.reply('Olá! Seja bem-vindo!'));
+bot.hears('/start', (ctx) => ctx.reply('Olá, mestre! Seja bem-vindo!'));
 
 // Definindo a ação a ser executada quando o usuário enviar uma mensagem de texto
 bot.on(message('text'), async (ctx) => {

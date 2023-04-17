@@ -20,7 +20,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.hears('/start', (ctx) => {
 
     // Armazenando o nome do usuário
-    const user = ctx.message.chat.last_name
+    const user = ctx.message.chat.first_name;
 
     ctx.reply(`Olá, ${user}! Seja bem-vindo!`);
 });

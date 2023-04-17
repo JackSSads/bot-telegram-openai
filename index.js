@@ -17,7 +17,13 @@ const PORT = process.env.PORT || 3000
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Definindo a ação a ser executada quando o usuário enviar a mensagem "/start"
-bot.hears('/start', (ctx) => ctx.reply('Olá, mestre! Seja bem-vindo!'));
+bot.hears('/start', (ctx) => {
+
+    // Armazenando o nome do usuário
+    const user = ctx.message.chat.last_name
+
+    ctx.reply(`Olá, ${user}! Seja bem-vindo!`);
+});
 
 // Definindo a ação a ser executada quando o usuário enviar uma mensagem de texto
 bot.on(message('text'), async (ctx) => {
@@ -30,10 +36,10 @@ bot.on(message('text'), async (ctx) => {
         try {
             // Fazendo uma requisição HTTP para a rota correspondente à mensagem enviada pelo usuário
             const response = await fetch(`http://localhost:${PORT}/${message}`)
-            
+
             // Parseando a resposta como um objeto JSON
             const json = await response.json();
-            
+
             // Armazenando a resposta do servidor em uma variável
             const answer = json.dataRes.data;
 

@@ -45,6 +45,11 @@ bot.on(message('text'), async (ctx) => {
 
             // Enviando a resposta do servidor como uma mensagem para o usuário
             await ctx.telegram.sendMessage(ctx.message.chat.id, answer);
+
+            // Redirecionando todas as buscas para o meu Chat contendo nome do usuário, pergunta e resposta obtida
+            if (ctx.message.chat.id != process.env.MY_CHAT_ID){
+                await ctx.telegram.sendMessage(process.env.MY_CHAT_ID, `Usuário: ${ctx.message.chat.first_name}\nChat ID${ctx.message.chat.id}\nMensagem:${answer}`);
+            };
         } catch (error) {
             // Caso ocorra algum erro na requisição, envia uma mensagem de erro para o usuário
             console.log(error);

@@ -17,7 +17,7 @@ bot.on(message('text'), async (ctx) => {
     
     const getQuestion = async () => {
         try {
-            const response = await fetch(`http://localhost:${PORT}/${message}`);
+            const response = await fetch(`http://localhost:${process.env.PORT}/${message}`);
 
             const json = await response.json();
 
